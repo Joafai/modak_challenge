@@ -1,24 +1,20 @@
 import React from "react";
 import { View, Image, StyleSheet, ScrollView } from "react-native";
-import MapView, { Marker } from "react-native-maps";
 
 import colors from "../config/colors";
 import Text from "../components/Text";
 import IconButton from "../components/IconButton";
 import favArt from "../data/favArt";
 
-function FeedDetailScreen({ route, navigation }) {
+function FavDetailScreen({ route, navigation }) {
   const artpiece = route.params;
 
-  {
-    console.log(favArt);
-  }
+  // {
+  //   console.log(favArt);
+  // }
 
   return (
-    <ScrollView
-    // style={styles.scrollView}
-    // contentContainerStyle={styles.contentContainer}
-    >
+    <ScrollView>
       <View style={styles.imageContainer}>
         <Image
           style={styles.image}
@@ -39,37 +35,18 @@ function FeedDetailScreen({ route, navigation }) {
         <Text style={styles.infoTitles}>Place of Origin</Text>
         <Text style={styles.title}>{artpiece.place_of_origin}</Text>
         <View style={styles.favContainer}>
-          <Text>Fav this Piece!</Text>
+          <Text>Remove from favorites</Text>
           <IconButton
-            name="heart"
+            name="close"
             style={styles.buttonHeart}
             color="red"
             onPress={() => {
-              favArt.push(artpiece);
-              navigation.navigate("Feed");
+              favArt.pop(artpiece);
+              navigation.navigate("Fav");
             }}
           />
         </View>
       </View>
-      {/* <MapView
-        //provider={PROVIDER_GOOGLE} // remove if not using Google Maps
-
-        style={styles.map}
-        region={{
-          latitude: artpiece.latitude,
-          longitude: artpiece.longitude,
-        }}
-      >
-        <Marker
-          coordinate={{
-            latitude: artpiece.latitude,
-            longitude: artpiece.longitude,
-          }}
-          pinColor={"blue"} // any color
-          title={artpiece.title}
-          description={artpiece.artist_display}
-        />
-      </MapView> */}
     </ScrollView>
   );
 }
@@ -106,16 +83,12 @@ const styles = StyleSheet.create({
   },
   favContainer: {
     flex: 1,
-    width: 200,
+    width: 280,
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-between",
     marginVertical: 20,
   },
-  map: {
-    height: 400,
-    width: 600,
-  },
 });
 
-export default FeedDetailScreen;
+export default FavDetailScreen;

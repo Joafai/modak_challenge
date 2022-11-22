@@ -1,34 +1,30 @@
 import React, { useEffect, useState } from "react";
 import { FlatList, StyleSheet } from "react-native";
 
+import { useSelector, useDispatch } from "react-redux";
+import { favoArt, addArt } from "../redux/slices/ArtSlice";
+
 import Card from "../components/Card";
 import colors from "../config/colors";
-import artworksApi from "../api/artworks";
 
 import Screen from "../components/Screen";
 
-// import useApi from "../hooks/useApi";
-
 function FeedScreen({ navigation }) {
-  // const getArtworksApi = useApi(artworksApi.getArtworks);
-
-  // useEffect(() => {
-  //   getArtworksApi.request();
-  // }, []);
-
-  // console.log(getArtworksApi.data);
-
   const [artworks, setArtworks] = useState([]);
+
+  const artState = useSelector(favoArt);
+  const dispatch = useDispatch();
+
+  console.log(artState);
+  // console.log(favoArt);
 
   useEffect(() => {
     const loadArtworks = async () => {
-      // const response = await artworksApi.getArtworks();
-      // // console.log(response.data[0].id);
       const response = await fetch(
         "https://api.artic.edu/api/v1/artworks?&limit=100&fields=id,title,artist_display,date_display,image_id,thumbnail,place_of_origin"
       );
       const myJson = await response.json();
-      // console.log(myJson);
+
       setArtworks(myJson);
     };
 

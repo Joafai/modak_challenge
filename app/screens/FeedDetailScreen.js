@@ -5,8 +5,14 @@ import colors from "../config/colors";
 import Text from "../components/Text";
 import IconButton from "../components/IconButton";
 import favArt from "../data/favArt";
+import { useSelector, useDispatch } from "react-redux";
+import { favoArt, addArt } from "../redux/slices/ArtSlice";
 
-function FavDetailScreen({ route, navigation }) {
+function FeedDetailScreen({ route, navigation }) {
+  // const favoArt = useSelector(selectArt);'
+  const artState = useSelector(favoArt);
+  const dispatch = useDispatch();
+
   const artpiece = route.params;
 
   {
@@ -35,14 +41,17 @@ function FavDetailScreen({ route, navigation }) {
         <Text style={styles.infoTitles}>Place of Origin</Text>
         <Text style={styles.title}>{artpiece.place_of_origin}</Text>
         <View style={styles.favContainer}>
-          <Text>Remove from favorites</Text>
+          <Text>Fav this Piece!</Text>
           <IconButton
-            name="close"
+            name="heart"
             style={styles.buttonHeart}
             color="red"
             onPress={() => {
-              favArt.pop(artpiece);
-              navigation.navigate("Fav");
+              // favArt.push(artpiece);
+              // addArt((current) => [...current, artpiece]);
+              dispatch(addArt(artpiece));
+
+              navigation.navigate("Feed");
             }}
           />
         </View>
@@ -83,7 +92,7 @@ const styles = StyleSheet.create({
   },
   favContainer: {
     flex: 1,
-    width: 280,
+    width: 200,
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-between",
@@ -91,4 +100,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default FavDetailScreen;
+export default FeedDetailScreen;
