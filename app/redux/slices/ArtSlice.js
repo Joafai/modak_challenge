@@ -7,12 +7,15 @@ export const artSlice = createSlice({
   },
   reducers: {
     addArt(state, action) {
-      let art = [{ ...action.payload }, ...state.art];
-      state.art = art;
+      state.favoArt = [...state.favoArt, action.payload];
+    },
+    removeArt(state, action) {
+      const newarray = state.favoArt.filter((art) => art.id === action.payload);
+      state.favoArt = [...newarray];
     },
   },
 });
 
-export const { addArt } = artSlice.actions;
+export const { addArt, removeArt } = artSlice.actions;
 export const favoArt = (state) => state.favoArt;
 export default artSlice.reducer;

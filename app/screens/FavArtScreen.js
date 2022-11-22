@@ -3,15 +3,19 @@ import { StyleSheet, FlatList } from "react-native";
 import Card from "../components/Card";
 import Screen from "../components/Screen";
 import colors from "../config/colors";
-import favArt from "../data/favArt";
+
+import { useSelector } from "react-redux";
+import { favoArt } from "../redux/slices/ArtSlice";
 
 function FavArtScreen({ navigation }) {
+  const artState = useSelector(favoArt);
+
   return (
     <Screen style={styles.screen}>
       <FlatList
         showsHorizontalScrollIndicator={false}
         showsVerticalScrollIndicator={false}
-        data={favArt}
+        data={artState}
         renderItem={({ item }) => (
           <Card
             title={item.title}

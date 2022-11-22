@@ -4,14 +4,14 @@ import { View, Image, StyleSheet, ScrollView } from "react-native";
 import colors from "../config/colors";
 import Text from "../components/Text";
 import IconButton from "../components/IconButton";
-import favArt from "../data/favArt";
+
+import { useDispatch } from "react-redux";
+import { removeArt } from "../redux/slices/ArtSlice";
 
 function FavDetailScreen({ route, navigation }) {
   const artpiece = route.params;
 
-  // {
-  //   console.log(favArt);
-  // }
+  const dispatch = useDispatch();
 
   return (
     <ScrollView>
@@ -41,7 +41,8 @@ function FavDetailScreen({ route, navigation }) {
             style={styles.buttonHeart}
             color="red"
             onPress={() => {
-              favArt.pop(artpiece);
+              // favArt.pop(artpiece);
+              dispatch(removeArt(artpiece));
               navigation.navigate("Fav");
             }}
           />
