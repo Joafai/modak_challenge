@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { FlatList, StyleSheet } from "react-native";
 
-import { useSelector, useDispatch } from "react-redux";
-import { favoArt, addArt } from "../redux/slices/ArtSlice";
+// import { useSelector, useDispatch } from "react-redux";
+// import { favoArt, addArt } from "../redux/slices/ArtSlice";
 
 import Card from "../components/Card";
 import colors from "../config/colors";
@@ -12,10 +12,10 @@ import Screen from "../components/Screen";
 function FeedScreen({ navigation }) {
   const [artworks, setArtworks] = useState([]);
 
-  const artState = useSelector(favoArt);
-  const dispatch = useDispatch();
+  // const artState = useSelector(favoArt);
+  // const dispatch = useDispatch();
 
-  console.log(artState);
+  // console.log(artState);
   // console.log(favoArt);
 
   useEffect(() => {

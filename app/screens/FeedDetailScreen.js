@@ -5,13 +5,13 @@ import colors from "../config/colors";
 import Text from "../components/Text";
 import IconButton from "../components/IconButton";
 import favArt from "../data/favArt";
-import { useSelector, useDispatch } from "react-redux";
-import { favoArt, addArt } from "../redux/slices/ArtSlice";
+// import { useSelector, useDispatch } from "react-redux";
+// import { favoArt, addArt } from "../redux/slices/ArtSlice";
 
 function FeedDetailScreen({ route, navigation }) {
   // const favoArt = useSelector(selectArt);'
-  const artState = useSelector(favoArt);
-  const dispatch = useDispatch();
+  // const artState = useSelector(favoArt);
+  // const dispatch = useDispatch();
 
   const artpiece = route.params;
 
@@ -47,9 +47,9 @@ function FeedDetailScreen({ route, navigation }) {
             style={styles.buttonHeart}
             color="red"
             onPress={() => {
-              // favArt.push(artpiece);
+              favArt.push(artpiece);
               // addArt((current) => [...current, artpiece]);
-              dispatch(addArt(artpiece));
+              // dispatch(addArt(artpiece));
 
               navigation.navigate("Feed");
             }}

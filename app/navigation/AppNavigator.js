@@ -2,10 +2,8 @@ import React from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 
-import FavArtScreen from "../screens/FavArtScreen";
 import FeedNavigator from "./FeedNavigator";
 import FavNavigator from "./FavNavigator";
-import FeedScreen from "../screens/FeedScreen";
 
 const Tab = createBottomTabNavigator();
 
